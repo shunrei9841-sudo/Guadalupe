@@ -1,0 +1,76 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyODH/59lsz3CTILYoJOyfdS",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/shunrei9841-sudo/Guadalupe/blob/main/Ejercicio%201%20examen%20.ipynb%20\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "\n",
+        "# Configuración\n",
+        "n_simulaciones = 1000000  # Un millón de muestras para alta precisión\n",
+        "\n",
+        "# 1. Generar U ~ Uniforme(0, 1)\n",
+        "u = np.random.random(n_simulaciones)\n",
+        "\n",
+        "# 2. Transformada Inversa para obtener X\n",
+        "# Basado en F(x) = 1 - (1/3)^x\n",
+        "x = np.ceil(np.log(1 - u) / np.log(1/3))\n",
+        "\n",
+        "# 3. Calcular g(X) = sqrt(X)\n",
+        "raiz_x = np.sqrt(x)\n",
+        "\n",
+        "# 4. Resultados de Monte Carlo\n",
+        "estimacion = np.mean(raiz_x)\n",
+        "error_estandar = np.std(raiz_x) / np.sqrt(n_simulaciones)\n",
+        "\n",
+        "print(f\"Resultados de la simulación:\")\n",
+        "print(f\"E[√X] ≈ {estimacion:.6f}\")\n",
+        "print(f\"Error estándar: {error_estandar:.6f}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "OP9jREDHHFVr",
+        "outputId": "85f44214-6a8f-4e6c-9597-6f156e525803"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Resultados de la simulación:\n",
+            "E[√X] ≈ 1.186944\n",
+            "Error estándar: 0.000300\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
